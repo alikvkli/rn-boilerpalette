@@ -6,13 +6,16 @@ import {HomeSliderItemView} from "./HomeSliderItemView";
 import {SectionHeader} from "../../components/section/SectionHeader";
 import NewsItem from "../../components/listing/news-list-item/news-item";
 import DefaultLayout from "../../layouts/DefaultLayout";
+import {useNavigation} from "@react-navigation/native";
+import NavigationName from "../../navigations/NavigationName";
 
 const WINDOW_WIDTH = Dimensions.get("window").width;
 
 export default function HomeScreen() {
+    const navigation = useNavigation();
     return (
 
-        <DefaultLayout>
+        <DefaultLayout refreshable={true} onRefresh={() => {}}>
             <SectionHeader mTop={12} title="Öne Çıkarılanlar"/>
             <Carousel
                 layout={"stack"}
@@ -20,7 +23,12 @@ export default function HomeScreen() {
                 renderItem={({item}) => (
                     <HomeSliderItemView
                         item={item}
-                        onClick={() => console.log(item)}
+                        onClick={() => {
+                            //@ts-ignore
+                            navigation.navigate(NavigationName.FeedDetailScreen, {
+                                id: 1
+                            });
+                        }}
                     />
                 )}
                 sliderWidth={WINDOW_WIDTH}
@@ -29,7 +37,7 @@ export default function HomeScreen() {
             />
 
             <SectionHeader mTop={12} title="Borsa da bugün ne oldu?"/>
-            <View style={[styles.flex1, {gap: 16}]}>
+            <View style={[styles.flex1, {gap: 16, marginBottom:16}]}>
                 <NewsItem/>
                 <NewsItem/>
                 <NewsItem/>

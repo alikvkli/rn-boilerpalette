@@ -1,4 +1,4 @@
-import {Entypo, MaterialCommunityIcons, FontAwesome5, MaterialIcons} from "@expo/vector-icons";
+import {Entypo, MaterialCommunityIcons, FontAwesome5, MaterialIcons, AntDesign} from "@expo/vector-icons";
 import {LinearGradient} from "expo-linear-gradient";
 import React from "react";
 import {
@@ -27,38 +27,34 @@ export const HomeSliderItemView: React.FC<TProps> = ({item, onClick}) => {
                     style={styles.imgBack}
                     imageStyle={{borderRadius: Theme.sizes.boxBorderRadius}}
                     source={{
-                        uri: item.imgUrl,
+                        uri: "https://icdn.turkiyegazetesi.com.tr/images/23-08/27/ebebek-halka-arz-hangi-bankalarda-var_-bebek-giyim-devi-arz-olacak-ebebek-kac-lot-verir_.jpg",
                     }}
                 >
                     <View style={styles.labelContent}>
                         <Text style={styles.labelText}>
-                            {item.title}
+                            Öne Çıkarılan
                         </Text>
                     </View>
                     <View style={styles.rowsContainer}>
                         <LinearGradient
-                            colors={["transparent", "#000000"]}
+                            colors={["transparent", "#000"]}
                             style={styles.gradientLayout}
                         >
                             <View style={styles.flex1}>
-                                <Text style={styles.titleText} numberOfLines={2}>
-                                    {item.title}
+                                <Text style={styles.titleText} numberOfLines={3}>
+                                    Ebebek halka arzına 3,9 milyonu aşkın yatırımcı geldi!
                                 </Text>
-                                <View style={styles.featureContainer}>
-                                    <View style={styles.featureItem}>
-                                        <MaterialIcons name="update"  color="white" size={14} />
-                                        <Text style={styles.featureText}>10.09.2023</Text>
-                                    </View>
-                                    <View style={styles.featureItem}>
-                                        <FontAwesome5 name="comments" color="white" size={14} />
-                                        <Text style={styles.featureText}>24</Text>
-                                    </View>
-                                </View>
-
+                                {/* <View style={styles.featureContainer}>                               */}
+                                {/*     <View style={styles.featureItem}>                                */}
+                                {/*         <MaterialIcons name="date-range"  color="white" size={14} /> */}
+                                {/*         <Text style={styles.featureText}>10.09.2023</Text>           */}
+                                {/*     </View>                                                          */}
+                                {/*     <View style={styles.featureItem}>                                */}
+                                {/*         <AntDesign name="eye" color="white" size={14} />             */}
+                                {/*         <Text style={styles.featureText}>24</Text>                   */}
+                                {/*     </View>                                                          */}
+                                {/* </View>                                                              */}
                             </View>
-                            <Text style={styles.moneyText}>
-                                deneme3
-                            </Text>
                         </LinearGradient>
                     </View>
                 </ImageBackground>
@@ -95,15 +91,17 @@ const styles = StyleSheet.create({
         right: 0,
     },
     gradientLayout: {
+        flex:1,
         padding: 16,
-        borderRadius: 12,
+        borderRadius: 6,
         flexDirection: "row",
     },
     titleText: {
         color: "white",
-        fontSize: 19,
+        fontSize: 18,
         fontFamily: "default-bold",
         textAlign: "justify",
+        flex:1
     },
     featureContainer: {
         display:"flex",

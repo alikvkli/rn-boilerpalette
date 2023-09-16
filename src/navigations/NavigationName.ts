@@ -10,6 +10,7 @@ export default {
     CategoryFeedScreen:"CategoryFeedScreen" as never,
     BookMarkScreen: "BookMarkScreen",
     MenuScreen: "MenuScreen" as never,
+    FeedDetailScreen: "FeedDetailScreen" as never,
 
 
     //Tabs

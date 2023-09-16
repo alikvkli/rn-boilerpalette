@@ -9,6 +9,7 @@ import CategoryScreen from "../screens/category/CategoryScreen";
 import MenuScreen from "../screens/menu/MenuScreen";
 import BackButton from "./components/BackButton";
 import CategoryFeedScreen from "../screens/category/CategoryFeedScreen";
+import Index from "../screens/detail/FeedDetailScreen";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -21,6 +22,11 @@ const HomeTabStack = () => {
                 name={NavigationName.HomeScreen}
                 component={HomeScreen}
                 options={{headerShown: true, title: ""}}/>
+            <Stack.Screen
+                name={NavigationName.FeedDetailScreen}
+                component={Index}
+                options={{headerShown: true}}
+            />
         </Stack.Navigator>
     )
 }
@@ -49,7 +55,7 @@ const CategoryTabStack = () => {
             <Stack.Screen
                 name={NavigationName.CategoryFeedScreen}
                 component={CategoryFeedScreen}
-                options={{headerShown:true}}/>
+                options={{headerShown: true}}/>
         </Stack.Navigator>
     )
 }
@@ -62,7 +68,7 @@ const MenuTabStack = () => {
             <Stack.Screen
                 name={NavigationName.MenuScreen}
                 component={MenuScreen}
-                options={{headerShown: true, title:"Ayarlar"}}/>
+                options={{headerShown: true, title: "Ayarlar"}}/>
         </Stack.Navigator>
     )
 }

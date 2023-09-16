@@ -1,8 +1,6 @@
-import {Animated, Dimensions, RefreshControl, SafeAreaView, ScrollView, StyleSheet} from "react-native";
+import {Animated, RefreshControl, SafeAreaView, ScrollView, StyleSheet} from "react-native";
 import {Theme} from "../theme";
 import {FC} from "react";
-
-const HEADER_HEIGHT = 230;
 
 interface IDefaultLayout {
     children: React.ReactNode,
@@ -24,6 +22,7 @@ const DefaultLayout: FC<IDefaultLayout> = ({children, refreshable, onRefresh,}) 
             return undefined;
         }
     };
+
     return (
         <SafeAreaView style={styles.contentContainer}>
             <ScrollView
@@ -47,9 +46,8 @@ const styles = StyleSheet.create({
     contentContainer: {flex: 1},
     scrollViewContainer: {
         flex: 1,
-        backgroundColor: Theme.colors.windowBackground,
+        backgroundColor: Theme.colors.windowBackground
     },
-    scrollViewContentContainerStyle: {paddingTop: HEADER_HEIGHT + 16},
 });
 
 export default DefaultLayout;
