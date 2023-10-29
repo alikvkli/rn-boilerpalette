@@ -1,44 +1,22 @@
-import {FC} from "react";
-import {ParamListBase, RouteProp, useNavigation} from "@react-navigation/native";
-import {BottomTabNavigationOptions} from "@react-navigation/bottom-tabs";
-import NavigationName from "./NavigationName";
-import {Theme} from "../theme";
-import {AntDesign, MaterialIcons} from '@expo/vector-icons';
-import {Ionicons} from '@expo/vector-icons';
-import {StackNavigationOptions} from "@react-navigation/stack";
-import {Feather} from '@expo/vector-icons';
+import { ParamListBase, RouteProp } from "@react-navigation/native";
+import { BottomTabNavigationOptions } from "@react-navigation/bottom-tabs";
+import { TabRouter } from "./router";
+import { Theme } from "../theme";
+import { StackNavigationOptions } from "@react-navigation/stack";
+import CustomIcon from "../components/custom-icon";
 
 
 const getTabTitle = (routeName: string): string => {
-    if (routeName === NavigationName.HomeTab) {
-        return "Anasayfa";
-    } else if (routeName === NavigationName.BookMarkTab) {
-        return "Favorilerim";
-    } else if (routeName === NavigationName.CategoryTab) {
-        return "Kategoriler";
-    } else if (routeName === NavigationName.MenuTab) {
-        return "Ayarlar";
-    }
-    return "";
+    return TabRouter[routeName].title;
 };
 
 export const tabScreenOptions: (props: {
-    route: RouteProp<ParamListBase, keyof ParamListBase>;
-    navigation: any;
-}) => BottomTabNavigationOptions = ({route}) => ({
+    route: RouteProp<ParamListBase, keyof ParamListBase>; navigation: any;
+}) => BottomTabNavigationOptions = ({ route }) => ({
     title: getTabTitle(route.name),
-    tabBarIcon: ({focused, color, size}) => {
-        switch (route.name) {
-            case NavigationName.HomeTab:
-                return <AntDesign name="home" size={28} color={color}/>;
-            case NavigationName.BookMarkTab:
-                return <Ionicons name="ios-bookmarks" size={24} color={color}/>;
-            case NavigationName.CategoryTab:
-                return <Feather name="award" size={24} color={color}/>;
-            case NavigationName.MenuTab:
-                return <Ionicons name="settings-sharp" size={24} color={color}/>;
-
-        }
+    tabBarIcon: ({ focused, color }) => {
+        const icon = TabRouter[route.name].icon
+        return <CustomIcon as={icon.as} name={icon.name} size={icon.size} color={color} focused={focused} />
     },
     tabBarActiveTintColor: Theme.colors.navbarActiveColor,
     tabBarInactiveTintColor: Theme.colors.navbarInactiveColor,
@@ -50,6 +28,5 @@ export const stackScreenOptions: StackNavigationOptions = {
     headerBackTitleVisible: false,
     headerTintColor: Theme.colors.primaryColorDark,
     headerMode: "screen",
-    //headerLeft: () => <MenuButton/>
 }
 

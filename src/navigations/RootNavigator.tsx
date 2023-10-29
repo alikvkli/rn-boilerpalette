@@ -1,23 +1,19 @@
-import {CardStyleInterpolators, createStackNavigator} from "@react-navigation/stack";
-import {useEffect, useState,} from "react";
-import {useAppDispatch, useAppSelector} from "../hooks";
+import { CardStyleInterpolators, createStackNavigator } from "@react-navigation/stack";
+import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../hooks";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import {setLogin} from "../redux/features/user";
-import {StatusBar} from "expo-status-bar";
+import { StatusBar } from "expo-status-bar";
 import LoadingLayout from "../loading/LoadingLayout";
-import {NavigationContainer} from "@react-navigation/native";
-import NavigationName from "./NavigationName";
+import { NavigationContainer } from "@react-navigation/native";
 import TabNavigator from "./TabNavigator";
 import AuthNavigator from "./AuthNavigator";
-import * as Font from "expo-font";
-import {configureGlobalTypography} from "../helpers/TypographyHelper";
 
 
 const RootStack = createStackNavigator();
 
 export default function () {
-    const {userData} = useAppSelector(state => state.user)
-    const {isLoading} = useAppSelector(state => state.config);
+    const { userData } = useAppSelector(state => state.user)
+    const { isLoading } = useAppSelector(state => state.config);
     const dispatch = useAppDispatch();
 
 
@@ -36,7 +32,7 @@ export default function () {
         <>
             <StatusBar
                 backgroundColor="transparent"
-                translucent={true}/>
+                translucent={true} />
             <NavigationContainer theme={{
                 dark: false,
                 colors: {
@@ -48,26 +44,21 @@ export default function () {
                     notification: "rgb(255, 69, 58)",
                 }
             }}>
-
                 <RootStack.Navigator
                     screenOptions={{
                         headerShown: false,
                         presentation: "modal",
                         cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS
                     }}>
-
                     <RootStack.Screen
-                        name={NavigationName.RootScreen}
-                        component={TabNavigator}/>
+                        name={"RootScreen"}
+                        component={TabNavigator} />
                     <RootStack.Screen
-                        name={NavigationName.RootLoginScreen}
-                        component={AuthNavigator}/>
-
-
+                        name={"RootLoginScreen"}
+                        component={AuthNavigator} />
                 </RootStack.Navigator>
-
             </NavigationContainer>
-            <LoadingLayout/>
+            <LoadingLayout />
         </>
     )
 }

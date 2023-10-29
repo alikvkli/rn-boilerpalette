@@ -1,6 +1,6 @@
 import {createStackNavigator} from "@react-navigation/stack";
-import NavigationName from "./NavigationName";
 import LoginScreen from "../screens/login/LoginScreen";
+import { ScreenRouter } from "./router";
 
 const RootStack = createStackNavigator();
 
@@ -15,7 +15,7 @@ export default function (){
             headerLeft: () => null,
         }}>
             <RootStack.Screen
-                name={NavigationName.LoginScreen}
+                name={ScreenRouter.LoginScreen}
                 component={LoginScreen}/>
         </RootStack.Navigator>
     )

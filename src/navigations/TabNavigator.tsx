@@ -1,15 +1,10 @@
-import {createStackNavigator} from "@react-navigation/stack";
-import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
-import {stackScreenOptions, tabScreenOptions} from "./NavigationHelper";
-import NavigationName from "./NavigationName";
+import { createStackNavigator } from "@react-navigation/stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { stackScreenOptions, tabScreenOptions } from "./NavigationHelper";
 import HomeScreen from "../screens/home/HomeScreen";
-import BookMarkScreen from "../screens/bookmark/BookMarkScreen";
-import {useAppSelector} from "../hooks";
-import CategoryScreen from "../screens/category/CategoryScreen";
-import MenuScreen from "../screens/menu/MenuScreen";
-import BackButton from "./components/BackButton";
-import CategoryFeedScreen from "../screens/category/CategoryFeedScreen";
-import Index from "../screens/detail/FeedDetailScreen";
+import { useAppSelector } from "../hooks";
+import { ScreenRouter } from "./router";
+import TestScreen from "../screens/test/TestScreen";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -19,72 +14,39 @@ const HomeTabStack = () => {
     return (
         <Stack.Navigator screenOptions={stackScreenOptions}>
             <Stack.Screen
-                name={NavigationName.HomeScreen}
+                name={ScreenRouter.HomeScreen}
                 component={HomeScreen}
-                options={{headerShown: true, title: ""}}/>
-            <Stack.Screen
-                name={NavigationName.FeedDetailScreen}
-                component={Index}
-                options={{headerShown: true}}
-            />
+                options={{ headerShown: true, title: "" }} />
         </Stack.Navigator>
     )
 }
 
-//Kaydedilenler Routes
-const BookMarkTabStack = () => {
+const TestTabStack = () => {
     return (
         <Stack.Navigator screenOptions={stackScreenOptions}>
             <Stack.Screen
-                name={NavigationName.BookMarkScreen}
-                component={BookMarkScreen}
-                options={{headerShown: true, title: "Favorilerim"}}/>
+                name={ScreenRouter.TestScreen}
+                component={TestScreen}
+                options={{ headerShown: true, title: "" }} />
         </Stack.Navigator>
     )
 }
 
-//Kategoriler Routes
-const CategoryTabStack = () => {
-    return (
-        <Stack.Navigator screenOptions={stackScreenOptions}>
-            <Stack.Screen
-                name={NavigationName.CategoryScreen}
-                component={CategoryScreen}
-                options={{headerShown: true, title: "Kategoriler"}}
-            />
-            <Stack.Screen
-                name={NavigationName.CategoryFeedScreen}
-                component={CategoryFeedScreen}
-                options={{headerShown: true}}/>
-        </Stack.Navigator>
-    )
-}
 
-//Ayarlar Routes
 
-const MenuTabStack = () => {
-    return (
-        <Stack.Navigator screenOptions={stackScreenOptions}>
-            <Stack.Screen
-                name={NavigationName.MenuScreen}
-                component={MenuScreen}
-                options={{headerShown: true, title: "Ayarlar"}}/>
-        </Stack.Navigator>
-    )
-}
 
 
 const TabNavigator = () => {
-    const {login} = useAppSelector(state => state.user)
+    const { login } = useAppSelector(state => state.user)
     return (
         <Tab.Navigator screenOptions={tabScreenOptions}>
             <Tab.Screen
-                name={NavigationName.HomeTab}
-                component={HomeTabStack}/>
+                name="HomeTab"
+                component={HomeTabStack} />
             <Tab.Screen
-                name={NavigationName.CategoryTab}
-                component={CategoryTabStack}/>
-            <Tab.Screen
+                name="TestTab"
+                component={TestTabStack} />
+            {/* <Tab.Screen
                 name={NavigationName.BookMarkTab}
                 component={BookMarkTabStack}
                 listeners={({navigation, route}) => ({
@@ -96,10 +58,7 @@ const TabNavigator = () => {
                         navigation.navigate(NavigationName.RootLoginScreen);
                     },
                 })}
-            />
-            <Tab.Screen
-                name={NavigationName.MenuTab}
-                component={MenuTabStack}/>
+            /> */}
         </Tab.Navigator>
     )
 }
